@@ -2,3 +2,4 @@
 html
 #the espresso file
 *.esproj
+*.swp

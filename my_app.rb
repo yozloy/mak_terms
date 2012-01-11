@@ -1,12 +1,31 @@
 require 'sinatra'
 require 'mongo'
 class MyApp < Sinatra::Base
+	set :public_folder, File.dirname(__FILE__) + '/statics'
 	get '/search' do
 <<HERE
   <form action="search" method="post">
 	<input type="text" name="name[word]" />
 	<input type="submit" name="get the Chinese" />
 	</form>
+	<div id="myDiv"><h2>Let AJAX change this text</h2></div>
+	<button type="button" onclick="loadXMLDoc()">Change Content</button>
+	<script type="text/javascript">
+		function loadXMLDoc()
+		{
+		httpxml = new window.XMLHttpRequest;
+		httpxml.open('GET','resources/text/test.txt',true);
+		httpxml.send();
+		httpxml.onreadystatechange = function() {
+			if(httpxml.readyState == 3) {
+				document.getElementById('myDiv').innerHTML = 'Loading...';
+			}
+			if(httpxml.readyState == 4){
+				document.getElementById("myDiv").innerHTML= httpxml.responseText;
+				}
+			}
+		}
+	</script>
 HERE
 	end
 	post '/search' do
