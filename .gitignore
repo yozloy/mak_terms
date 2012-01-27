@@ -1,5 +1,9 @@
+#test folder
+test
 #html test folder
 html
 #the espresso file
 *.esproj
 *.swp
+#Macos Hidden
+.DS_Store

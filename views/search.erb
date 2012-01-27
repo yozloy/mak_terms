@@ -1,0 +1,116 @@
+<!--<script>
+	$(function() {
+		var availableTags = [
+		"<a href="/" >hoop</a>",
+		"fulcrum",
+		"traditional grip"
+		];
+		$("#tags").autocomplete({
+			source: availableTags
+		}
+		);
+	}
+	);
+</script>
+<script>
+	$(function() {
+		$("#terms").autocomplete({
+			source: function(request, response){
+				$.ajax({
+					url: '/fetch/names?input='+request
+				})
+			}
+		})
+	})
+</script>
+-->
+<header>
+
+	<nav class="outter-nav">
+		<a href="/" class="brand">
+			<img src="/resources/images/logo-trans-upper.png" height="30"/>
+		</a>
+		<ul role="navigation" class>
+			<li>
+			<a href="/search" >查询术语</a>
+			</li>
+			<li>
+			<a href="/create">提交术语</a>
+			</li>
+		</ul>
+	</nav>
+<script>
+	function showHint(str) {
+		xmlhttp = new XMLHttpRequest();
+		xmlhttp.open('GET', 'fetch/names?input='+str,true);
+		xmlhttp.send();
+		xmlhttp.onreadystatechange = function()
+		{
+			if(xmlhttp.readyState ==4)
+			{
+				//document.getElementById('markson').innerHTML.text = xmlhttp.responseText;
+				available_tags = xmlhttp.response;
+				$("#tags").autocomplete({
+					source: available_tags	
+				});
+			}
+		}
+	}
+</script>l
+<form action='' style="margin: 100px auto;" class="ui-widget">
+	<label for="tags">查询术语</lable><!--<input type='text' id="markson" onkeyup="showHint(this.value)" /> -->
+	<input id="tags" onkeyup="showHint(this.value)">
+</form>
+<!--<p id="textHint"></p>-->
+</header>
+<div role="main">
+	<!--
+	<div class="container pages main-banner">
+		<a href="/" class="banner-sign-up"></a>
+	</div>
+	<section class="customers">
+		<h2>他们都在使用</h2>
+		<div class="gallery">
+		</div>
+		<nav>
+			<ul>
+				<li>
+				<a href="/" class="arrow previous"><b>上一个</b><</a>
+				</li>
+				<li>
+				<a href="/" class="arrow next"><b>下一个</b></a>
+				</li>
+			</ul>
+		<nav>
+		<nav class="clients-display">
+			<ul>
+				<li class="cloned">
+				<a href="/" class="clients_23"></a>
+				</li>
+				<li>
+				<a href="/" class="clients_4"></a>
+				</li>
+			</ul>
+		</nav>
+	</section>
+<script>
+	function showHint(str) {
+		xmlhttp = new XMLHttpRequest();
+		xmlhttp.open('GET', 'fetch/names?input='+str,true);
+		xmlhttp.send();
+		xmlhttp.onreadystatechange = function()
+		{
+			if(xmlhttp.readyState ==4)
+			{
+				document.getElementById('textHint').innerHTML = xmlhttp.responseText;
+			}
+		}
+	}
+</script>
+<form action=''>
+	<input type='text' id="markson" onkeyup="showHint(this.value)" />
+</form>
+<p id="textHint"></p>
+--!>
+</div>
+<footer></footer>

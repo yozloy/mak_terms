@@ -1,0 +1,22 @@
+<script>
+	function insertToMongo(english_value, chinese_value) {
+		xmlhttp = new XMLHttpRequest();
+		xmlhttp.open('GET','insert/names?english_value='+english_value+'&chinese_value='+chinese_value, true );
+		xmlhttp.send()
+		xmlhttp.onreadystatechange = function() {
+			if(xmlhttp.readyState == 4) {
+				document.getElementById('prompt').innerHTML = 'The Request is sent to MongoDB and the response from the server is:' + xmlhttp.responseText;
+			}
+		}
+	}
+//function insertToMongo(value1, value2){
+//	document.getElementById('prompt').innerHTML=value1 + value2
+//}
+</script>
+
+<form>
+	<input type='text' id="english_value" /> 
+	<input type="text" id="chinese_value" />
+	<input type='button' onclick="insertToMongo(document.getElementById('english_value').value, document.getElementById('chinese_value').value)" value="give it to mongo"/> 
+</form>
+<p id="prompt"></p>
