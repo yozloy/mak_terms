@@ -24,46 +24,56 @@
 	})
 </script>
 -->
-<header>
-
-	<nav class="outter-nav">
-		<a href="/" class="brand">
-			<img src="/resources/images/logo-trans-upper.png" height="30"/>
-		</a>
-		<ul role="navigation" class>
-			<li>
-			<a href="/search" >查询术语</a>
-			</li>
-			<li>
-			<a href="/create">提交术语</a>
-			</li>
-		</ul>
-	</nav>
-<script>
-	function showHint(str) {
-		xmlhttp = new XMLHttpRequest();
-		xmlhttp.open('GET', 'fetch/names?input='+str,true);
-		xmlhttp.send();
-		xmlhttp.onreadystatechange = function()
-		{
-			if(xmlhttp.readyState ==4)
-			{
-				//document.getElementById('markson').innerHTML.text = xmlhttp.responseText;
-				available_tags = xmlhttp.response;
-				$("#tags").autocomplete({
-					source: available_tags	
-				});
-			}
+<div role="main">
+	<script>
+		function removeBox(id){
+			var target = document.getElementById(id);
 		}
+		function removeSelf(node){
+			while (node.hasChildNodes()) {node.removeChild(node.firstChild)}
+		}
+	function showHint(str) {
+			var ul_list = document.getElementById('suggestion_box');
+			removeBox('suggestion_box');
+			removeSelf(ul_list);	
+			function removeSelf(node) {while (node.hasChildNodes()) {node.removeChild(node.firstChild);};}
+			ul_list.style.display = 'none';
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.open('GET', 'fetch/names?input='+str,true);
+			xmlhttp.send();
+			xmlhttp.onreadystatechange = function()
+			{
+				if(xmlhttp.readyState ==4)
+				{
+					document.getElementById('suggestion_box').style.display = 'block';
+					 text_array = xmlhttp.responseText.split(',');
+					text_array.pop();
+					var keys = text_array.length; 
+					var ul_node = document.getElementById('suggestion_box');
+					for(var i=0; i < keys; i++){
+						new_li = document.createElement('li');	
+						new_li.innerHTML = text_array[i];
+						ul_node.appendChild(new_li);
+					}
+					
+					//document.getElementById('text_ha').innerHTML = xmlhttp.responseText;
+				}
+			}
 	}
-</script>l
-<form action='' style="margin: 100px auto;" class="ui-widget">
-	<label for="tags">查询术语</lable><!--<input type='text' id="markson" onkeyup="showHint(this.value)" /> -->
+</script>
+<div id="content">
+<form action=''>
+	<label for="tags">查询术语:</lable><!--<input type='text' id="markson" onkeyup="showHint(this.value)" /> -->
+	<div>
 	<input id="tags" onkeyup="showHint(this.value)">
+	<ul id="suggestion_box" style="display:none;">
+		<li id ="text_ha"></li>
+	</ul>
+</div>
 </form>
 <!--<p id="textHint"></p>-->
-</header>
-<div role="main">
+</div>
+
 	<!--
 	<div class="container pages main-banner">
 		<a href="/" class="banner-sign-up"></a>
@@ -113,4 +123,4 @@
 <p id="textHint"></p>
 --!>
 </div>
-<footer></footer>
+

@@ -9,18 +9,18 @@ require 'mongo'
 #end
 class MakTerm < Sinatra::Base
 	set :public_folder, File.dirname(__FILE__) + '/statics'
-	server = 'localhost';	port =  27017
-	#server = 'mongoc2.grandcloud.cn'; port = 10003
+	#server = 'localhost';	port =  27017
+	server = 'mongoc2.grandcloud.cn'; port = 10003
 	user = 'yozloy'
 	password = '0054444944'
 
 	db = Mongo::Connection.new(server, port).db('terms')
-	#db.authenticate(user,password)
+	db.authenticate(user,password)
 	@@coll = db.collection('drum')
 		
 
 	get '/create' do
-		erb :create_form, :layout => :frame
+		erb :create, :layout => :frame
 	end
 	post '/create' do
 		english = params['English']
@@ -43,12 +43,13 @@ class MakTerm < Sinatra::Base
 
 	get '/fetch/names' do  
 		str = params['input']
-		new_result_array = []
+		#new_result_array = []
+		new_result_string = ""
 		@@coll.find({'English' => /^#{str}/},{:fields => {'_id' => 0}}).each do |result|
-			new_result_array << "#{result['English']}}"
-			new_result_array << "#{result['Chinese']}"
+			#new_result_array << result['English']
+			new_result_string << "#{result['English']}-#{result['Chinese']},"
 		end
-		new_result_array.to_s
+			new_result_string
 	end
 
 	get '/insert/names' do

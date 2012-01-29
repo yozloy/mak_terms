@@ -3,13 +3,16 @@ body {
 	padding: 0;
 }
 form {
-  margin-top: 50px;
-  width: 250px;
-  height: 250px;
-  text-align: center; }
-
+	font-size: 32px;
+  /*text-align: center;*/
+}
+div#content {
+	width: 500px;
+	height: 200px;
+	margin:50px auto;
+}
 form input {
-  font: 50px/5px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	font-size: 32px;
   text-align: left;
   color: black; }
 	header {
@@ -17,6 +20,24 @@ form input {
     height: 485px;
    background:url('../images/header-bg.jpg'); 
 	}
+form label {
+}
+form div {
+	display: inline-block;
+}
+form ul {
+	position: absolute;
+	background-color: white;
+	width: 331px;
+	border: 1px solid gray;
+	margin: 0 2px;
+	padding: 0;
+}
+
+form ul li {
+	list-style-type: none;
+}
+
 
 .outter-nav {
 	position: relative;
@@ -29,7 +50,7 @@ form input {
   border-radius: 3px;
 }
 .outter-nav .brand {
-	margin: 10px 55px 0 20px;
+	margin: 7px 55px 0 20px;
 	display: block;
 	float: left;
 }
@@ -48,7 +69,7 @@ form input {
 .outter-nav ul li a{
 	display: block;
 	float:left;
-	padding: 0 25px;
+	padding: 15px 25px;
 	height: 44px;
 	text-align: center;
 	font-size: 14px;
