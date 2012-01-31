@@ -8,14 +8,14 @@ require 'mongo'
 #	end
 #end
 class MakTerm < Sinatra::Base
-	set :public_folder, File.dirname(__FILE__) + '/statics'
-	#server = 'localhost';	port =  27017
-	server = 'mongoc2.grandcloud.cn'; port = 10003
+	set :public_folder, File.dirname(__FILE__) + '/resources'
+	server = 'localhost';	port =  27017
+#	server = 'mongoc2.grandcloud.cn'; port = 10003
 	user = 'yozloy'
 	password = '0054444944'
 
 	db = Mongo::Connection.new(server, port).db('terms')
-	db.authenticate(user,password)
+	#db.authenticate(user,password)
 	@@coll = db.collection('drum')
 		
 
@@ -43,13 +43,16 @@ class MakTerm < Sinatra::Base
 
 	get '/fetch/names' do  
 		str = params['input']
-		#new_result_array = []
-		new_result_string = ""
+		new_result_string = '' 
 		@@coll.find({'English' => /^#{str}/},{:fields => {'_id' => 0}}).each do |result|
-			#new_result_array << result['English']
-			new_result_string << "#{result['English']}-#{result['Chinese']},"
+			vote_list =""
+			result['Chinese'].each_value do |vote|
+				vote_list << vote + ';'	
+			end
+			vote_list.chomp!(';')
+			new_result_string << "#{result['English']}-#{vote_list},"
 		end
-			new_result_string
+			new_result_string.chomp!(',')
 	end
 
 	get '/insert/names' do
@@ -66,19 +69,17 @@ class MakTerm < Sinatra::Base
 	#	doc.inspect
 	end
 
+	get '/terms/:name' do |name|
+		result = @@coll.find_one('English' => name)
+		@english_name = name
+		@chinese_names = result['Chinese']
+		erb :show, :layout => :frame
+	end
 	post '/test' do
-		"#{params.inspect}"
 	end
 
 	get '/test' do
-		id = @@coll.find_one()[:_id]
-		#doc = { _id:id, English:'paradiddle', 'Chinese' => 'eg'}
-		if @@coll.insert({ _id:id, English:'paradiddle', 'Chinese' => 'eg'},
- {safe:true}) then
-			"Successful"
-		else
-			"fail"	
-		end
+		
 	end
 	get '/test1' do
 		"Shotgun works!"

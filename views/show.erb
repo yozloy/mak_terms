@@ -1,0 +1,40 @@
+<div id="content">
+	<div id="toc">
+		<p><strong>术语解释</strong></p>
+		<ul class="top">
+			<li>
+			<a href="#current-trans">当前译法</a>
+			</li>
+				<ul>
+					<li><a href="#vote1"><%= @chinese_names['vote1'] %><a/></li>
+				</ul>
+			<li>
+			<a href="#candidate-trans">候选译法</a>
+				<ol>
+					<li>
+					<a href="#vote2"><%= @chinese_names['vote2']%></a>
+					</li>
+					<li>
+					<a href="#vote3"><%= @chinese_names['vote3'] %></a>
+					</li>
+				</ol>
+			</li>
+		</ul>
+	</div>
+	<div id="filecontent">
+		<h1><%= @english_name %></h1>
+		<p>轴点是发力的轴点，是弹跳的发力点</p>
+		<h2 id="current-trans">
+			当前译法
+		</h2>
+		<h3 id="vote1">轴点</h3>
+		<h2 id="candidate-tarns">候选译法</h2>
+				<p>以下的是按投票排列的候选译法</p>
+				<h3 id="vote2">支点</h3>
+					<p>这个突出出来了杠杆的形象之称，但是没有突出杠杆围绕之转动的感觉</p>
+				<h3 id="vote3">支点转轴</h3>
+					<p>这个把支和转都突出出来了，但是4个字比较长，不方便引用。</p>
+				<h3 id="vote4">持槌点</h3>
+					<p>和grip会混淆</p>
+	</div>
+</div>

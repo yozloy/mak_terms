@@ -1,15 +1,24 @@
 body {
 	margin: 0;
 	padding: 0;
+   background:url('/images/header-bg.jpg'); 
 }
 form {
 	font-size: 32px;
   /*text-align: center;*/
 }
 div#content {
-	width: 500px;
-	height: 200px;
+	background-color: white;
+	width: 720px;
 	margin:50px auto;
+	padding: 20px 40px;
+}
+
+div#content p {
+	background: #CCffCC;
+	border: 1px solid #eef;
+	text-indent: 15px;
+	padding: 5px 12px;
 }
 form input {
 	font-size: 32px;
@@ -17,8 +26,7 @@ form input {
   color: black; }
 	header {
 		# background-color: #4fa6e7;
-    height: 485px;
-   background:url('../images/header-bg.jpg'); 
+    #height: 485px;
 	}
 form label {
 }
@@ -38,11 +46,23 @@ form ul li {
 	list-style-type: none;
 }
 
+h1 {
+	border-bottom: 1px dotted #d5d5d5;
+}
+h2 {
+	border-bottom:1px dotted #aaa;
+}
+
+h3 {
+	padding-left:20px;
+	background: url('/images/bullin.jpg') no-repeat;
+	background-position-y: 5px;
+}
 
 .outter-nav {
 	position: relative;
 	top:18px;
-	width:990px;
+	width:800px;
 	margin:0 auto;
 	height:44px;
 	background-color: #cdcdcd;
@@ -63,7 +83,7 @@ form ul li {
 .outter-nav ul li {
 	display: block;
 	float: left;
-	background: transparent url(/resources/images/outter-nav-sep.png) no-repeat scroll top left;
+	background: transparent url(/images/outter-nav-sep.png) no-repeat scroll top left;
 }
 
 .outter-nav ul li a{
@@ -77,5 +97,25 @@ form ul li {
 	text-decoration: none;
 	text-shadow: 0 1px 0 rgba(255,255,255, 0.4)a
 	line-height: 44px;
+}
+
+#toc {
+	background-color: white;
+	padding: 20px;
+	border: 1px solid #ddd;
+	float:right;
+	-webkit-box-shadow: -2px 2px 6px #bbb;
+	-moz-box-shadow: -2px 2px 6px #bbb;
+}
+
+footer {
+	width: 720px;
+	text-align: center;
+	background-color: white;
+	margin: 10px auto;
+	padding: 5px 40px;
+	background-color: #cdcdcd;
+	box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(255, 255, 255, 0.9) inset, 1px 0 0 rgba(0, 0, 0, 0.26) inset, -1px 0 0 rgba(0, 0, 0, 0.26) inset, 0 -1px 0 rgba(0, 0, 0, 0.3) inset;
+  border-radius: 3px;
 }
 

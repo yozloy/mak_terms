@@ -1,126 +1,14 @@
-<!--<script>
-	$(function() {
-		var availableTags = [
-		"<a href="/" >hoop</a>",
-		"fulcrum",
-		"traditional grip"
-		];
-		$("#tags").autocomplete({
-			source: availableTags
-		}
-		);
-	}
-	);
-</script>
-<script>
-	$(function() {
-		$("#terms").autocomplete({
-			source: function(request, response){
-				$.ajax({
-					url: '/fetch/names?input='+request
-				})
-			}
-		})
-	})
-</script>
--->
 <div role="main">
-	<script>
-		function removeBox(id){
-			var target = document.getElementById(id);
-		}
-		function removeSelf(node){
-			while (node.hasChildNodes()) {node.removeChild(node.firstChild)}
-		}
-	function showHint(str) {
-			var ul_list = document.getElementById('suggestion_box');
-			removeBox('suggestion_box');
-			removeSelf(ul_list);	
-			function removeSelf(node) {while (node.hasChildNodes()) {node.removeChild(node.firstChild);};}
-			ul_list.style.display = 'none';
-			xmlhttp = new XMLHttpRequest();
-			xmlhttp.open('GET', 'fetch/names?input='+str,true);
-			xmlhttp.send();
-			xmlhttp.onreadystatechange = function()
-			{
-				if(xmlhttp.readyState ==4)
-				{
-					document.getElementById('suggestion_box').style.display = 'block';
-					 text_array = xmlhttp.responseText.split(',');
-					text_array.pop();
-					var keys = text_array.length; 
-					var ul_node = document.getElementById('suggestion_box');
-					for(var i=0; i < keys; i++){
-						new_li = document.createElement('li');	
-						new_li.innerHTML = text_array[i];
-						ul_node.appendChild(new_li);
-					}
-					
-					//document.getElementById('text_ha').innerHTML = xmlhttp.responseText;
-				}
-			}
-	}
+	<script src="/javascripts/search.js">
 </script>
 <div id="content">
 <form action=''>
-	<label for="tags">查询术语:</lable><!--<input type='text' id="markson" onkeyup="showHint(this.value)" /> -->
+	<label for="tags">查询术语:</label>
 	<div>
-	<input id="tags" onkeyup="showHint(this.value)">
-	<ul id="suggestion_box" style="display:none;">
-		<li id ="text_ha"></li>
+		<input id="tags" onkeyup="showHint()">
+		<ul id="suggestion_box" style="display:none;">
 	</ul>
 </div>
 </form>
-<!--<p id="textHint"></p>-->
-</div>
-
-	<!--
-	<div class="container pages main-banner">
-		<a href="/" class="banner-sign-up"></a>
-	</div>
-	<section class="customers">
-		<h2>他们都在使用</h2>
-		<div class="gallery">
-		</div>
-		<nav>
-			<ul>
-				<li>
-				<a href="/" class="arrow previous"><b>上一个</b><</a>
-				</li>
-				<li>
-				<a href="/" class="arrow next"><b>下一个</b></a>
-				</li>
-			</ul>
-		<nav>
-		<nav class="clients-display">
-			<ul>
-				<li class="cloned">
-				<a href="/" class="clients_23"></a>
-				</li>
-				<li>
-				<a href="/" class="clients_4"></a>
-				</li>
-			</ul>
-		</nav>
-	</section>
-<script>
-	function showHint(str) {
-		xmlhttp = new XMLHttpRequest();
-		xmlhttp.open('GET', 'fetch/names?input='+str,true);
-		xmlhttp.send();
-		xmlhttp.onreadystatechange = function()
-		{
-			if(xmlhttp.readyState ==4)
-			{
-				document.getElementById('textHint').innerHTML = xmlhttp.responseText;
-			}
-		}
-	}
-</script>
-<form action=''>
-	<input type='text' id="markson" onkeyup="showHint(this.value)" />
-</form>
-<p id="textHint"></p>
---!>
 </div>
 
